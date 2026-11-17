@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite it as below."
+type: software
+title: "KAMPA: Knowledge Amalgamation with Meta-classifier-guided Pseudo-label Assignment"
+version: 1.0.0
+date-released: 2026-11-18
+license: PolyForm-Noncommercial-1.0.0
+repository-code: "https://github.com/KAMPA-audio/KAMPA"
+authors:
+  - family-names: Ahn
+    given-names: Su Jin
+  - family-names: Kim
+    given-names: Haeng Woon
+  - family-names: Park
+    given-names: Ji Su
+keywords:
+  - acoustic classification
+  - residential noise
+  - knowledge amalgamation
+  - pseudo-labeling

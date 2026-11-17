@@ -1,0 +1,7 @@
+﻿N,Condition,Target,Unlabeled clips used,Accuracy,Macro Precision,Macro Recall,Macro F1,Δ Accuracy vs KAMPA,Δ Macro Precision vs KAMPA,Δ Macro Recall vs KAMPA,Δ Macro F1 vs KAMPA
+200,KAMPA (M-T),single label or two-candidate set,"1,877.0 ± 16.8",92.09 ± 1.13,92.56 ± 1.22,92.09 ± 1.13,92.05 ± 1.13,—,—,—,—
+200,Soft-selected,"full 9-class q (T = 1), KAMPA rows and weights","1,877.0 ± 16.8",91.86 ± 1.10,92.23 ± 1.07,91.86 ± 1.10,91.85 ± 1.09,−0.23 ± 0.68,−0.32 ± 0.56,−0.22 ± 0.68,−0.21 ± 0.71
+200,Soft-all,"full 9-class q (T = 1), all 2,000 clips, uniform weight","2,000",92.05 ± 1.45,92.32 ± 1.38,92.05 ± 1.44,92.05 ± 1.41,−0.05 ± 0.98,−0.24 ± 0.84,−0.04 ± 0.98,0.00 ± 1.00
+2000,KAMPA (M-T),single label or two-candidate set,"1,874",96.93 ± 0.30,97.01 ± 0.31,96.94 ± 0.30,96.95 ± 0.30,—,—,—,—
+2000,Soft-selected,"full 9-class q (T = 1), KAMPA rows and weights","1,874",96.51 ± 0.55,96.59 ± 0.55,96.52 ± 0.55,96.53 ± 0.55,−0.42 ± 0.45,−0.43 ± 0.44,−0.42 ± 0.45,−0.42 ± 0.45
+2000,Soft-all,"full 9-class q (T = 1), all 2,000 clips, uniform weight","2,000",96.37 ± 0.63,96.45 ± 0.65,96.38 ± 0.63,96.38 ± 0.64,−0.56 ± 0.67,−0.56 ± 0.66,−0.56 ± 0.67,−0.57 ± 0.67

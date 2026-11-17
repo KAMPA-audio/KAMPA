@@ -1,0 +1,13 @@
+﻿Split,Partition,Clips,Source groups,heavy_impact,dragging,construction,machine_noise,talking,water_toilet,water_shower,dog_bark,others
+Re-split 1,train candidates,"2,216","1,893",249,249,248,248,234,248,248,246,246
+Re-split 1,val,326,284,35,35,35,35,46,35,35,35,35
+Re-split 1,test,318,284,35,35,35,35,38,35,35,35,35
+Re-split 1,unlabeled (original U),"2,000","1,680",,,,,,,,,
+Re-split 2,train candidates,"2,226","1,904",249,249,248,248,246,248,248,246,244
+Re-split 2,val,319,281,35,35,35,35,37,35,35,35,37
+Re-split 2,test,315,276,35,35,35,35,35,35,35,35,35
+Re-split 2,unlabeled (original U),"2,000","1,680",,,,,,,,,
+Re-split 3,train candidates,"2,230","1,892",249,249,248,248,248,248,248,246,246
+Re-split 3,val,315,286,35,35,35,35,35,35,35,35,35
+Re-split 3,test,315,283,35,35,35,35,35,35,35,35,35
+Re-split 3,unlabeled (original U),"2,000","1,680",,,,,,,,,

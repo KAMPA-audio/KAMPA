@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "kind": "segment",
+  "teacher_release_sha256": "bf4daf097e44268074ac818b98d8b3a88d8a9303f48b5a9f7eec205a485006d3",
+  "files": [
+    {
+      "file": "best_teacher_encoder_mark4.1.pth",
+      "sha256": "adb246587f4654eef4d28377cbcae95604c7b9f0191357d4277135abca479fe4",
+      "bytes": 1974907,
+      "run_id": "347b9fc0-cf03-48c8-9f25-92a2aecda67e",
+      "target_class": "heavy_impact"
+    },
+    {
+      "file": "best_teacher_classifier_mark4.1.pth",
+      "sha256": "2a304c7b8e69ab0e699e5784d0293e7a7f9ef36e2e19a3f29ef28cfe7a7a3a74",
+      "bytes": 6361,
+      "run_id": "347b9fc0-cf03-48c8-9f25-92a2aecda67e",
+      "target_class": "heavy_impact"
+    },
+    {
+      "file": "best_teacher_encoder_mark4.2.pth",
+      "sha256": "5905b239bac56562a421339dbb2b9862ae58c305d790a4b6c4d62237dfd26756",
+      "bytes": 1974843,
+      "run_id": "b9851e97-67b0-41fb-8f42-ba983ba937bd",
+      "target_class": "dragging"
+    },
+    {
+      "file": "best_teacher_classifier_mark4.2.pth",
+      "sha256": "d4b6d58f84af74f82c1a4cab000d44539e07a5978519ebbdd347fba2e9ca20ff",
+      "bytes": 6361,
+      "run_id": "b9851e97-67b0-41fb-8f42-ba983ba937bd",
+      "target_class": "dragging"
+    },
+    {
+      "file": "best_teacher_encoder_mark4.3.pth",
+      "sha256": "4f4dfde476b9c5572f144e65970fd5aa4ad16aedbf7acb292a8954fba0f6ffd3",
+      "bytes": 1974907,
+      "run_id": "ae2d8504-5a4f-485e-a92f-413a6837cf9a",
+      "target_class": "construction"
+    },
+    {
+      "file": "best_teacher_classifier_mark4.3.pth",
+      "sha256": "046dc0f44fd4d9e5d0250a0ee9e6c44120a1795fd6bf8d0383b9174d09ccb0d2",
+      "bytes": 6361,
+      "run_id": "ae2d8504-5a4f-485e-a92f-413a6837cf9a",
+      "target_class": "construction"
+    },
+    {
+      "file": "best_teacher_encoder_mark4.4.pth",
+      "sha256": "b5d10f1c749edd7462b021ce3c1bdab8cd09852d8aa0b8b8eec4f9b47d2db94b",
+      "bytes": 1974907,
+      "run_id": "c9c38dda-c29d-4351-98a4-a2abf9f125e3",
+      "target_class": "machine_noise"
+    },
+    {
+      "file": "best_teacher_classifier_mark4.4.pth",
+      "sha256": "476e683eda3c7f5f8ffa48e25a86bc0e023654cbb333a42f9338a2c4568aa513",
+      "bytes": 6361,
+      "run_id": "c9c38dda-c29d-4351-98a4-a2abf9f125e3",
+      "target_class": "machine_noise"
+    },
+    {
+      "file": "best_teacher_encoder_mark4.5.pth",
+      "sha256": "5cc146c2562f508db93fb487182113efcac5d3e0cfcc67e52604636a051f90ff",
+      "bytes": 1974843,
+      "run_id": "9f05a6ed-cd41-4628-818d-07c53ea539fd",
+      "target_class": "speech"
+    },
+    {
+      "file": "best_teacher_classifier_mark4.5.pth",
+      "sha256": "8155859ba709d42e6a9a738dab332b8aec45a90f8c7f63c387af30ee53e49753",
+      "bytes": 6361,
+      "run_id": "9f05a6ed-cd41-4628-818d-07c53ea539fd",
+      "target_class": "speech"
+    },
+    {
+      "file": "best_teacher_encoder_mark4.6.pth",
+      "sha256": "d0aaf9cdeedd6cb1bc5c5f0502cb1a74c17f0c13c7f965aac4d0fa890e96d479",
+      "bytes": 1974907,
+      "run_id": "19f1e1e2-4185-4b31-929f-366062ff744a",
+      "target_class": "water_toilet"
+    },
+    {
+      "file": "best_teacher_classifier_mark4.6.pth",
+      "sha256": "dee6bb52c7d0efa308ccd0795dbf0099bfdd653658236bc2b86f169cc26d728c",
+      "bytes": 6361,
+      "run_id": "19f1e1e2-4185-4b31-929f-366062ff744a",
+      "target_class": "water_toilet"
+    },
+    {
+      "file": "best_teacher_encoder_mark4.7.pth",
+      "sha256": "28c93c52449756eb1980211c35ce8ab7538fd3e0fc814358482c936a0ff20910",
+      "bytes": 1974907,
+      "run_id": "555d4dd8-db50-42e6-9d1a-96830ab1fb87",
+      "target_class": "water_shower"
+    },
+    {
+      "file": "best_teacher_classifier_mark4.7.pth",
+      "sha256": "708be17f6830c01af3de0b2ed5513b46790a2f0be57e44ed05ee5f94fa00ab1e",
+      "bytes": 6361,
+      "run_id": "555d4dd8-db50-42e6-9d1a-96830ab1fb87",
+      "target_class": "water_shower"
+    },
+    {
+      "file": "best_teacher_encoder_mark4.8.pth",
+      "sha256": "c6399cdf140f1b6ab044200649e31f47623293500b210ad6dd229ca2cd3c5210",
+      "bytes": 1974843,
+      "run_id": "e7c08822-5966-4454-86aa-4281b950e958",
+      "target_class": "dog_bark"
+    },
+    {
+      "file": "best_teacher_classifier_mark4.8.pth",
+      "sha256": "1ce362e9baadd030b603cdbaa83319ce6339dd62feeda4a1b8b06585b48af431",
+      "bytes": 6361,
+      "run_id": "e7c08822-5966-4454-86aa-4281b950e958",
+      "target_class": "dog_bark"
+    }
+  ]
+}

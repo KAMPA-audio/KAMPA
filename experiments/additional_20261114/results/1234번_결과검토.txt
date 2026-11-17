@@ -1,0 +1,126 @@
+1~4번 추가실험 결과 검토 (2026-11-16)
+
+실행: 01 노트북 90회(1~3번)와 02 노트북 60회(4번), 총 150회. Colab NVIDIA L4, 한 실행 환경(4c67b0e1456c).
+정답 수 N=200·2,000, 라벨 없는 자료 M=2,000, 학습 seed 1~5. 대조군까지 모두 같은 실행 코드(20261114-v2)로 새로 학습했다.
+숫자는 seed 5개 평균이고 Accuracy / Macro Precision / Macro Recall / Macro F1(%) 순서다.
+차이는 같은 N·seed끼리 뺀 값의 평균(%p)이다. 통계적 유의성 검정은 하지 않았다.
+
+요약 (Macro F1, N=200 / N=2,000. 네 지표는 아래 절과 표에 있다)
+- 1번: 메타분류기 통합과 두 후보 손실이 모두 학생 성능을 올렸다. 네 조합 중 KAMPA가 두 N에서 네 지표 모두 가장 높았다(92.05 / 96.95).
+- 2번: 전체 9클래스 분포 증류는 KAMPA보다 높지 않았다. Soft-selected −0.21 / −0.42%p, Soft-all 0.00 / −0.57%p.
+- 3번: 교사 TRAIN 정답 12,477개를 더 준 oracle이 KAMPA보다 2.22 / 0.18%p 높았다. oracle이 정답만 학습한 학생보다 올린 폭의 74.5% / 91.2%를 KAMPA가 라벨 없는 2,000개만으로 얻었다.
+- 4번: 출처 그룹 단위 재분할 3개 모두에서 KAMPA가 EfficientAT보다 네 지표 모두 높았다. 세 분할 평균 차이 +5.60 / +0.76%p.
+
+
+1번. 메타분류기 기여도 분리 (표1·표2·표3·그림1)
+------------------------------------------------------------------------
+조건: F = 고정 odds 통합(q_k ∝ p_k/(1−p_k), q_others ∝ 1), M = 메타분류기.
+S = 단일 라벨만, T = 단일 라벨 + 두 후보. M-T가 KAMPA다.
+보조 대조군(KAMPA samples, top-1 targets): KAMPA가 채택한 행과 가중치를 그대로 두고 두 후보 행의 정답만 1순위 클래스로 바꿨다.
+고정 odds 통합은 v8의 고정 규칙(fixed rule)과 다른 조건이다.
+
+성능               N=200                              N=2,000
+F-S        90.98 / 91.65 / 90.96 / 90.92      95.91 / 96.12 / 95.91 / 95.94
+F-T        91.81 / 92.47 / 91.80 / 91.80      96.00 / 96.17 / 96.00 / 96.03
+M-S        91.95 / 92.35 / 91.95 / 91.93      96.60 / 96.70 / 96.61 / 96.62
+KAMPA      92.09 / 92.56 / 92.09 / 92.05      96.93 / 97.01 / 96.94 / 96.95
+
+효과(%p)                                      N=200                              N=2,000
+통합, 단일 라벨 (M-S − F-S)          +0.98 / +0.69 / +0.99 / +1.01      +0.70 / +0.59 / +0.70 / +0.69
+통합, 두 후보 (M-T − F-T)            +0.28 / +0.09 / +0.29 / +0.25      +0.93 / +0.84 / +0.93 / +0.92
+두 후보, 고정 통합 (F-T − F-S)       +0.84 / +0.81 / +0.84 / +0.88      +0.09 / +0.05 / +0.10 / +0.09
+두 후보, 메타분류기 (M-T − M-S)      +0.14 / +0.21 / +0.14 / +0.12      +0.33 / +0.31 / +0.33 / +0.33
+상호작용                             −0.70 / −0.60 / −0.70 / −0.76      +0.23 / +0.26 / +0.23 / +0.23
+같은 행의 두 후보 손실 (KAMPA − 보조 대조군)       +0.19 / +0.28 / +0.18 / +0.11      +0.88 / +0.85 / +0.88 / +0.88
+애매한 행을 1순위로 추가 (보조 대조군 − M-S)       −0.05 / −0.08 / −0.04 / +0.01      −0.56 / −0.54 / −0.56 / −0.56
+
+가짜 정답 (라벨 없는 2,000개, 표3. 메타분류기 값은 N=200 / N=2,000)
+- 단일 라벨 채택: 고정 통합 1,651개, 메타분류기 1,676개 / 1,668개.
+- 두 후보 채택: 고정 통합 200개, 메타분류기 201개 / 206개.
+- 단일 라벨 일치율: 고정 통합 95.28%, 메타분류기 96.35% / 97.30%.
+- 두 후보 포함률: 고정 통합 92.00%, 메타분류기 94.70% / 94.66%.
+
+결과가 보여 주는 것
+- 통합 효과 2개와 두 후보 효과 2개가 두 N과 네 지표에서 모두 양수다. 메타분류기는 같은 채택 규칙에서 더 많은 자료를 채택했고, 채택한 자료의 정답 일치율도 높았다.
+- N=200에서는 두 부품을 하나씩만 써도 약 1%p가 오르고, 둘을 함께 쓴 KAMPA는 F-S보다 1.13%p 높다. 두 부품이 고치는 오류가 겹친다(상호작용 −0.76%p).
+- N=2,000에서는 메타분류기 통합이 기여의 대부분을 차지한다. 두 후보 손실은 메타분류기와 함께 쓸 때 +0.33%p이고, 고정 통합에서는 +0.09%p다.
+- 같은 애매한 행을 1순위 정답으로 학습하면 N=2,000에서 0.56%p 떨어지고, 두 후보 손실로 학습하면 0.88%p 오른다. 애매한 자료는 두 후보 손실로 학습할 때 이득이 된다.
+- 반영계획 1-E 항목 중 고정 통합 정의, 기존 고정 규칙과의 구분, 메타분류기+단일 라벨 학생, 고정 통합+KAMPA 선별 학생, 채택 수·품질, 같은 행 대조에 해당하는 자료가 이 폴더에 있다. 원고 반영은 아직 하지 않았다.
+
+
+2번. 소프트 타깃 비교 (표4·그림2)
+------------------------------------------------------------------------
+조건: Soft-selected는 KAMPA와 같은 채택 행·가중치에 메타분류기의 9클래스 분포 q 전체를 목표로 준다(교차 엔트로피, T=1).
+Soft-all은 라벨 없는 2,000개 전부에 같은 가중치로 q 전체를 준다. 이전 HSHKD를 재현한 실험이 아니라 현재 조건의 증류 기준선이다.
+
+성능                  N=200                              N=2,000
+KAMPA         92.09 / 92.56 / 92.09 / 92.05      96.93 / 97.01 / 96.94 / 96.95
+Soft-selected 91.86 / 92.23 / 91.86 / 91.85      96.51 / 96.59 / 96.52 / 96.53
+Soft-all      92.05 / 92.32 / 92.05 / 92.05      96.37 / 96.45 / 96.38 / 96.38
+
+KAMPA와의 차이(%p)    N=200                              N=2,000
+Soft-selected −0.23 / −0.32 / −0.22 / −0.21      −0.42 / −0.43 / −0.42 / −0.42
+Soft-all      −0.05 / −0.24 / −0.04 / 0.00       −0.56 / −0.56 / −0.56 / −0.57
+
+결과가 보여 주는 것
+- 같은 행·가중치에서 목표 표현만 바꾸면 두 N 모두 전체 분포 증류가 KAMPA보다 낮았다.
+- 라벨 없는 자료를 전부 쓴 Soft-all은 N=200에서 Macro F1이 KAMPA와 같았고 나머지 세 지표는 낮았다. N=2,000에서는 네 지표 모두 0.56~0.57%p 낮았다.
+- 단일 라벨·두 후보 목표가 전체 분포 증류보다 높거나 같았다. v8의 "소프트 타깃과 비교하지 않았다"는 한계 문장은 이 결과로 바꿀 수 있다.
+
+
+3번. 교사 학습자료를 합친 oracle (표5·표6·그림3)
+------------------------------------------------------------------------
+자료: 교사 TRAIN 16,000행에서 같은 파일 3,523행을 빼면 12,477개다(원본 4,694개와 증강 7,783개, 출처 그룹 4,089개).
+이진 음성 라벨을 others로 일괄 변환하지 않고, 출처 기록으로 복원한 9클래스 라벨을 썼다.
+학생 VAL/TEST의 출처 그룹·파일과 겹친 교사 TRAIN은 0행이었다. 학생 정답 학습 클립과 같은 파일도 0개여서 두 N 모두 12,477개가 더해졌다(학습 클립 12,677개 / 14,477개).
+교사 VAL/TEST와 숨긴 U 정답은 넣지 않았다.
+
+성능                   N=200                              N=2,000
+정답만 학습    85.67 / 86.59 / 85.69 / 85.56      95.07 / 95.21 / 95.08 / 95.09
+KAMPA          92.09 / 92.56 / 92.09 / 92.05      96.93 / 97.01 / 96.94 / 96.95
+Oracle         94.28 / 94.47 / 94.27 / 94.27      97.12 / 97.20 / 97.12 / 97.13
+
+차이(%p)               N=200                              N=2,000
+KAMPA − 정답만 학습    +6.42 / +5.97 / +6.40 / +6.49      +1.86 / +1.81 / +1.86 / +1.86
+Oracle − 정답만 학습   +8.60 / +7.89 / +8.59 / +8.71      +2.05 / +2.00 / +2.04 / +2.04
+Oracle − KAMPA         +2.19 / +1.92 / +2.18 / +2.22      +0.19 / +0.19 / +0.19 / +0.18
+oracle 이득 중 KAMPA가 얻은 비율(%)   74.6 / 75.7 / 74.6 / 74.5     90.9 / 90.5 / 90.9 / 91.2
+
+결과가 보여 주는 것
+- 교사 TRAIN 정답을 직접 준 oracle이 KAMPA보다 높았고, 차이는 정답이 적은 N=200에서 크다.
+- KAMPA는 추가 정답 없이 라벨 없는 2,000개만으로 oracle 이득의 약 75%(N=200), 91%(N=2,000)를 얻었다.
+- 클래스별 F1(부록표B)에서 N=200 oracle은 construction 95.05·machine_noise 90.93으로 KAMPA(85.02·81.25)보다 높고, dog_bark 95.38·dragging 92.86은 KAMPA(99.79·95.15)보다 낮다.
+- oracle은 정답 12,477개를 더 쓴 참고 성능이고 보장된 상한은 아니다. 12,477개에는 증강 파일이 들어 있으므로 독립적인 새 정답 12,477개로 쓰지 않는다.
+
+
+4번. 출처 그룹 단위 재분할 (표7·표8·그림4)
+------------------------------------------------------------------------
+분할: 학생 정답·검증·시험 2,860개를 원본 녹음·세션 그룹 단위로 세 번 다시 나눴다(split seed 101·102·103).
+새 VAL/TEST에는 교사 TRAIN/VAL과 원래 U의 출처를 넣지 않았고, 원래 U 2,000개는 그대로 썼다. 메타분류기는 분할마다 그 분할의 N개 정답으로 다시 맞췄다.
+학습 후보 2,216 / 2,226 / 2,230개, 검증 326 / 319 / 315개, 시험 318 / 315 / 315개(시험 출처 그룹 284 / 276 / 283개).
+
+KAMPA − EfficientAT(%p)  N=200                              N=2,000
+Re-split 1      +4.47 / +4.57 / +4.49 / +4.54      +0.69 / +0.65 / +0.67 / +0.63
+Re-split 2      +6.35 / +6.57 / +6.35 / +6.60      +0.83 / +0.81 / +0.83 / +0.82
+Re-split 3      +5.46 / +5.03 / +5.46 / +5.67      +0.83 / +0.74 / +0.83 / +0.83
+세 분할 평균    +5.42 / +5.39 / +5.43 / +5.60      +0.78 / +0.74 / +0.77 / +0.76
+
+세 분할 평균 성능    N=200                              N=2,000
+KAMPA          93.24 / 93.55 / 93.23 / 93.16      97.22 / 97.31 / 97.21 / 97.19
+EfficientAT    87.81 / 88.16 / 87.80 / 87.56      96.44 / 96.57 / 96.43 / 96.43
+
+결과가 보여 주는 것
+- 분할을 바꿔도 KAMPA가 EfficientAT보다 높다는 결과가 유지됐다. 세 분할 모두에서 네 지표의 평균이 KAMPA가 높다.
+- 회차별 Macro F1은 N=200에서 15회 모두, N=2,000에서 15회 중 13회 KAMPA가 높았다. 나머지 2회는 Re-split 1 seed 1(EfficientAT가 시험 318개 중 2개를 더 맞혔고 Macro F1이 0.64%p 높음)과 Re-split 2 seed 1(맞힌 수 308개로 같고 Macro F1이 0.01%p 차이)이다.
+- 현재 자료를 출처 그룹 단위로 다시 나눈 사후 재분할 검사이며, 새 집·새 기기에서의 검증은 아니다.
+
+
+그림 설명 초안 (영문, 그림 번호는 원고에 넣을 때 정한다)
+------------------------------------------------------------------------
+그림1: Factorial ablation of score integration and pseudo-label targets with N = 200 and N = 2,000 labeled training clips and M = 2,000 unlabeled clips. F denotes fixed odds integration (q_k ∝ p_k/(1 − p_k), q_other ∝ 1) and M the meta-classifier; S uses single labels only and T adds two-candidate sets. M-T is KAMPA. Points and error bars show the mean and sample standard deviation over five runs. The table lists mean paired differences in percentage points; "Two-cand. loss on the same rows" compares KAMPA with a control that trains the same accepted clips and weights on top-1 targets.
+
+그림2: Pseudo-label target representations. Soft-selected trains on KAMPA's accepted clips and weights with the full nine-class distribution q as the target (cross-entropy, T = 1). Soft-all uses q for all 2,000 unlabeled clips with uniform weights. Points and error bars show the mean and sample standard deviation over five runs. The table lists mean paired differences from KAMPA in percentage points.
+
+그림3: Supervised oracle reference that adds 12,477 deduplicated teacher training clips with nine-class labels (4,694 original and 7,783 augmented clips from 4,089 source groups) to the labeled training clips. The oracle uses additional labeled data and is a reference rather than a guaranteed upper bound. Points and error bars show the mean and sample standard deviation over five runs.
+
+그림4: Re-split evaluation. The labeled, validation, and test clips were re-partitioned three times by source group; teacher training and validation sources and unlabeled-pool sources were excluded from the new validation and test sets, and the meta-classifier was refit on each split's labeled clips. Points and error bars show the mean and sample standard deviation over five runs per re-split. The table lists mean paired differences between KAMPA and EfficientAT in percentage points.

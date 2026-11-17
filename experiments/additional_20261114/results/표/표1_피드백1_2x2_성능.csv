@@ -1,0 +1,13 @@
+﻿N,Condition,Score integration,Pseudo-label targets,Accuracy,Macro Precision,Macro Recall,Macro F1
+200,Labeled only,none,none,85.67 ± 2.72,86.59 ± 2.28,85.69 ± 2.71,85.56 ± 2.73
+200,F-S,fixed odds,single label only,90.98 ± 0.72,91.65 ± 0.72,90.96 ± 0.73,90.92 ± 0.72
+200,F-T,fixed odds,single + two-candidate,91.81 ± 0.38,92.47 ± 0.36,91.80 ± 0.38,91.80 ± 0.35
+200,M-S,meta-classifier,single label only,91.95 ± 1.16,92.35 ± 1.11,91.95 ± 1.16,91.93 ± 1.16
+200,KAMPA (M-T),meta-classifier,single + two-candidate,92.09 ± 1.13,92.56 ± 1.22,92.09 ± 1.13,92.05 ± 1.13
+200,"KAMPA samples, top-1 targets",meta-classifier,"KAMPA rows, top-1 target",91.91 ± 1.27,92.27 ± 1.32,91.91 ± 1.26,91.94 ± 1.25
+2000,Labeled only,none,none,95.07 ± 0.45,95.21 ± 0.41,95.08 ± 0.44,95.09 ± 0.44
+2000,F-S,fixed odds,single label only,95.91 ± 0.61,96.12 ± 0.59,95.91 ± 0.61,95.94 ± 0.61
+2000,F-T,fixed odds,single + two-candidate,96.00 ± 0.71,96.17 ± 0.73,96.00 ± 0.70,96.03 ± 0.71
+2000,M-S,meta-classifier,single label only,96.60 ± 0.71,96.70 ± 0.68,96.61 ± 0.71,96.62 ± 0.70
+2000,KAMPA (M-T),meta-classifier,single + two-candidate,96.93 ± 0.30,97.01 ± 0.31,96.94 ± 0.30,96.95 ± 0.30
+2000,"KAMPA samples, top-1 targets",meta-classifier,"KAMPA rows, top-1 target",96.05 ± 0.68,96.17 ± 0.63,96.05 ± 0.68,96.07 ± 0.68

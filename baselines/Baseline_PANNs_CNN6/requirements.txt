@@ -1,0 +1,16 @@
+# 비교모델 실행 환경 — 로컬(Python 3.8, CPU, journal/codes/.venv 공용)과 코랩(GPU) 둘 다.
+# 로컬: Mark5_EXP 와 같은 .venv 를 쓴다(아래 핀은 그 venv 의 실측값, 2026-09-05).
+# 코랩: torch·torchaudio·numpy·pandas·scikit-learn·matplotlib·seaborn 은 기본 설치돼 있어
+#       아래 "추가 패키지"만 pip install 하면 된다(코랩 실행순서 txt 참조).
+torch==2.4.1+cpu
+torchaudio==2.4.1+cpu
+numpy==1.24.4
+pandas==2.0.3
+scikit-learn==1.3.2
+matplotlib==3.7.5
+seaborn==0.13.2
+soundfile==0.12.1
+tqdm==4.66.5
+
+# --- 추가 패키지 (이 모델 전용) ---
+torchlibrosa==0.1.0

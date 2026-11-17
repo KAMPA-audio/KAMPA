@@ -1,0 +1,25 @@
+﻿N,Split,Model,Accuracy,Macro Precision,Macro Recall,Macro F1,Runs with higher Macro F1 (KAMPA)
+200,Re-split 1,KAMPA,90.88 ± 0.39,91.38 ± 0.47,90.87 ± 0.33,90.80 ± 0.33,
+200,Re-split 1,EfficientAT,86.42 ± 0.75,86.81 ± 0.66,86.38 ± 0.74,86.26 ± 0.82,
+200,Re-split 1,KAMPA − EfficientAT,+4.47 ± 0.60,+4.57 ± 0.70,+4.49 ± 0.60,+4.54 ± 0.63,5 / 5
+200,Re-split 2,KAMPA,94.67 ± 0.85,94.88 ± 0.78,94.67 ± 0.85,94.63 ± 0.90,
+200,Re-split 2,EfficientAT,88.32 ± 1.69,88.31 ± 1.82,88.32 ± 1.69,88.03 ± 1.88,
+200,Re-split 2,KAMPA − EfficientAT,+6.35 ± 1.37,+6.57 ± 1.50,+6.35 ± 1.37,+6.60 ± 1.44,5 / 5
+200,Re-split 3,KAMPA,94.16 ± 0.94,94.39 ± 0.79,94.16 ± 0.94,94.05 ± 1.00,
+200,Re-split 3,EfficientAT,88.70 ± 1.47,89.36 ± 1.49,88.70 ± 1.47,88.38 ± 1.58,
+200,Re-split 3,KAMPA − EfficientAT,+5.46 ± 1.34,+5.03 ± 1.37,+5.46 ± 1.34,+5.67 ± 1.45,5 / 5
+200,Mean of 3 re-splits,KAMPA,93.24,93.55,93.23,93.16,
+200,Mean of 3 re-splits,EfficientAT,87.81,88.16,87.80,87.56,
+200,Mean of 3 re-splits,KAMPA − EfficientAT,+5.42,+5.39,+5.43,+5.60,15 / 15
+2000,Re-split 1,KAMPA,96.29 ± 0.52,96.37 ± 0.49,96.26 ± 0.53,96.22 ± 0.55,
+2000,Re-split 1,EfficientAT,95.60 ± 0.97,95.72 ± 0.89,95.59 ± 0.97,95.59 ± 0.95,
+2000,Re-split 1,KAMPA − EfficientAT,+0.69 ± 0.93,+0.65 ± 0.89,+0.67 ± 0.94,+0.63 ± 0.92,4 / 5
+2000,Re-split 2,KAMPA,97.97 ± 0.91,98.04 ± 0.89,97.97 ± 0.91,97.97 ± 0.91,
+2000,Re-split 2,EfficientAT,97.14 ± 0.63,97.23 ± 0.62,97.14 ± 0.63,97.15 ± 0.64,
+2000,Re-split 2,KAMPA − EfficientAT,+0.83 ± 0.99,+0.81 ± 0.96,+0.83 ± 0.99,+0.82 ± 0.99,4 / 5
+2000,Re-split 3,KAMPA,97.40 ± 0.35,97.51 ± 0.34,97.40 ± 0.35,97.39 ± 0.35,
+2000,Re-split 3,EfficientAT,96.57 ± 0.41,96.77 ± 0.38,96.57 ± 0.41,96.56 ± 0.40,
+2000,Re-split 3,KAMPA − EfficientAT,+0.83 ± 0.73,+0.74 ± 0.69,+0.83 ± 0.73,+0.83 ± 0.72,5 / 5
+2000,Mean of 3 re-splits,KAMPA,97.22,97.31,97.21,97.19,
+2000,Mean of 3 re-splits,EfficientAT,96.44,96.57,96.43,96.43,
+2000,Mean of 3 re-splits,KAMPA − EfficientAT,+0.78,+0.74,+0.77,+0.76,13 / 15

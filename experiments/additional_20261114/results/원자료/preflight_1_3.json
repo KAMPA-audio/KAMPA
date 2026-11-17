@@ -1,0 +1,31 @@
+{
+  "original_source_overlap": {
+    "train__val": 0,
+    "train__test": 0,
+    "unlabeled__val": 0,
+    "unlabeled__test": 0,
+    "val__test": 0
+  },
+  "version": "20261114-v2",
+  "teacher_rows": 16000,
+  "oracle_unique_rows": 12477,
+  "oracle_original_files": 4694,
+  "oracle_augmented_files": 7783,
+  "oracle_source_groups": 4089,
+  "oracle_exclusions": {
+    "": 12477,
+    "duplicate_teacher_file_hash": 3523
+  },
+  "oracle_class_counts": {
+    "others": 2438,
+    "dragging": 1351,
+    "machine_noise": 1333,
+    "water_toilet": 1266,
+    "construction": 1262,
+    "talking": 1224,
+    "heavy_impact": 1219,
+    "water_shower": 1193,
+    "dog_bark": 1191
+  },
+  "original_val_teacher_exposed_groups": 1
+}

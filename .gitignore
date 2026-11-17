@@ -1,0 +1,26 @@
+# Audio is never committed (see data/README.md).
+*.wav
+data_labeled/
+data_unlabeled/
+data_val/
+data_test/
+data_source_labeled/
+data_source_unlabeled/
+data_source_val/
+data_source_test/
+data_eval/
+
+# Weights come from GitHub Releases (scripts/download_weights.sh).
+*.pth
+*.pt
+
+# Run outputs (results/runs/ holds the stored outputs used by scripts/reproduce_results.sh and is kept).
+/plots/
+/logFiles/
+/verification/
+/pseudo_labels_*.csv
+baselines/*/plots/
+baselines/*/logFiles/
+baselines/*/model/
+__pycache__/
+.pytest_cache/

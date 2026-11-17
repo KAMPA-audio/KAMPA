@@ -1,0 +1,25 @@
+﻿Item,N,Clips
+Teacher TRAIN rows (8 teachers),—,"16,000"
+Excluded: student_eval_source_group,—,0
+Excluded: student_eval_file_hash,—,0
+Excluded: duplicate_teacher_file_hash,—,"3,523"
+Unique teacher TRAIN clips with nine-class labels,—,"12,477"
+  heavy_impact,—,"1,219"
+  dragging,—,"1,351"
+  construction,—,"1,262"
+  machine_noise,—,"1,333"
+  talking,—,"1,224"
+  water_toilet,—,"1,266"
+  water_shower,—,"1,193"
+  dog_bark,—,"1,191"
+  others,—,"2,438"
+Removed: same file as a labeled training clip,200,0
+Teacher TRAIN clips added,200,"12,477"
+  original recordings,200,"4,694"
+  source groups,200,"4,089"
+Total supervised training clips,200,"12,677"
+Removed: same file as a labeled training clip,2000,0
+Teacher TRAIN clips added,2000,"12,477"
+  original recordings,2000,"4,694"
+  source groups,2000,"4,089"
+Total supervised training clips,2000,"14,477"

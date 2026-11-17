@@ -1,0 +1,11 @@
+# 오디오 원본만 깃에서 뺀다(원본 = 구글 드라이브 Mark5_EXP 폴더). 나머지(코드·인덱스·가중치·plots·모델·로그)는 전부 올린다.
+data_source_labeled/
+data_source_unlabeled/
+data_source_val/
+data_source_test/
+data_labeled/
+data_unlabeled/
+data_val/
+data_test/
+*.wav
+__pycache__/
