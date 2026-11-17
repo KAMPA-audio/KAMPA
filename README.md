@@ -55,7 +55,7 @@ bash scripts/reproduce_results.sh    # rebuilds results/four_results_* and check
 | `reproducibility/` | Candidate lists, gate reports and download tools for the external teacher data |
 | `dataset_*.csv`, `data/` | Index files read by the code, clip provenance and data access notes |
 | `resources/` | Teacher manifests (the teacher weights themselves are in the release) |
-| `notebooks/` | Colab notebooks used for the experiments (Korean comments) |
+| `notebooks/` | Colab notebooks used for the experiments (Korean comments; see "Notebooks" below) |
 | `results/` | The four result tables and figures, plus `results/runs/` with the per-run outputs they are built from |
 | `experiments/additional_20261114/` | Additional experiments: component comparisons, full-distribution distillation, teacher-label oracle, source-group re-splits, paired confidence intervals |
 | `baselines/` | Comparison models: EfficientAT mn10, PANNs CNN6, CED-Tiny |
@@ -126,6 +126,25 @@ The comparison models are run from their folders, with the repository root as th
 cd baselines/Baseline_EfficientAT_mn10
 python run_experiments.py --phase main --conds sup --labeled_ns 0 1000 500 200 --seeds 1 2 3 4 5 --data_root ../..   # 0 = all labels
 ```
+
+## Notebooks
+
+The notebooks in `notebooks/` are the Colab runbooks of the experiments. They expect the repository at
+`/content/drive/MyDrive/NewProject/codes/experiments/KAMPA` with the teacher repositories `Mark4.1`-`Mark4.8` and the
+`Baseline_*` folders next to it, and they check file hashes before every step. Because the index files were
+rewritten on 2026-11-18 (paths and the class name `speech`), the stored teacher scores, pseudo-labels and run
+outputs no longer match them:
+
+| Notebook | What happens when it is run now |
+|---|---|
+| `1 교사 점수·채택 관문` | Imports the teachers, rebuilds both teacher score caches and the teacher gate |
+| `2 Mark5.3 본실험 40회` | Stops in cell 3 by design (superseded by notebook 4) |
+| `3 비교모델 60회` | Retrains all 60 comparison runs; each run first deletes its old summary and prediction files |
+| `4 Mark5.3 라벨 없음 0 5회·결과물 4개` | Stops in cell 5 with `[STALE]` before any training (its pseudo-labels predate the new teacher scores) |
+| `5 비교모델 평가만 60회(argmax)` | Stops in cell 4 because the comparison runs would need retraining |
+
+The notebooks in `experiments/additional_20261114/` are the record of the additional experiments as they ran on the
+original Drive layout; they pin the hashes of the index files of that time and stop if run against the current ones.
 
 ## Tests
 

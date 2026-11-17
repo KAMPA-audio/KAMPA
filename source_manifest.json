@@ -2,7 +2,7 @@
   "classification_policy": "supervised_argmax_v1",
   "source_hash_mode": "sha256 after CRLF-to-LF normalization",
   "source": {
-    "README.md": "5609f411666debaa08212553f36fdeab968e5047db8ffe990124d171120301f4",
+    "README.md": "839e3e42ee57841c68394158d11a6cdf038af1b3bfe5bf48c00f86458d7a15d1",
     "model/aggregate_results.py": "bdb50a5b4d83b5fa4a53d7c2510642e9413568db9a7757d60ca289a61c4a08fc",
     "model/clap_zeroshot.py": "602884c87e914a64c871d867a68740f8b83e3db51fb2dfee286adec4f7ac6fc2",
     "model/class_names.py": "c07c96177425b1d05d0706c7e763c33853db019193cba834757c364b4a1e4281",
@@ -30,7 +30,7 @@
     "model/train_mark5.py": "5623cb844a8b46aed2b7b02ad53331ea40101bf07f5f9da64c98306af316842c",
     "model/verify_release.py": "4606671f855f33d5d3a9ec1f77cf3a338a52ec4034cafba639683ef42972fb80",
     "model/zeroshot_eval.py": "aa751e1357b0cacf9491346c2359f26f2595fb666940aa3fdc1533460ccc5ca8",
-    "notebooks/1 교사 점수·채택 관문.ipynb": "a679702e8e13cbaeea58d49f8bcc22005c5430f6c1a1d207a3b5913b06604e28",
+    "notebooks/1 교사 점수·채택 관문.ipynb": "9e655b3cab31572ee8bf0055e2529db5af6ed443ccf383b79c9a9a82a2b6f872",
     "notebooks/2 Mark5.3 본실험 40회.ipynb": "fae465f63d0b92dc0b3735fe877548398e0f0e995b190c96e92f49a2f2551244",
     "notebooks/3 비교모델 60회.ipynb": "d7879b03c9cf4cff8035155e3c0f6b5cdfd4a2cae8119385cd0b8126ee8d0c6a",
     "notebooks/4 Mark5.3 라벨 없음 0 5회·결과물 4개.ipynb": "c9d50502dd267e2179449881543f713c49d353b90090cba9470a2f8d7b0401b0",
